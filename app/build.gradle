@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion 26
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
@@ -29,14 +29,13 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["support-v4"]
     implementation rootProject.ext.dependencies["cardview"]
@@ -44,23 +43,22 @@ dependencies {
     implementation rootProject.ext.dependencies["recyclerview"]
     implementation rootProject.ext.dependencies["preference"]
     implementation rootProject.ext.dependencies["constraint-layout"]
-
     // 引入butterknife
     compile rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-
     //引入dagger2 start
     compile rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
-
     // Arouter alibaba
     compile rootProject.ext.dependencies["arouter-api"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-
     // rxjava
     compile rootProject.ext.dependencies["rxjava"]
     compile rootProject.ext.dependencies["rxandroid"]
     compile rootProject.ext.dependencies["rxbinding2"]
+    // rxlife 生命周期绑定
+    compile rootProject.ext.dependencies["rxlifecycle2"]
+    compile rootProject.ext.dependencies["rxlifecomponents"]
 
     // retrofit
     compile rootProject.ext.dependencies["retrofit2"]
@@ -68,5 +66,8 @@ dependencies {
     compile rootProject.ext.dependencies["converter-gson"]
     compile rootProject.ext.dependencies["adapter-rxjava2"]
 
-
+    // utils
+    compile rootProject.ext.dependencies["utilcode"]
+    compile rootProject.ext.dependencies["glide"]
+    compile rootProject.ext.dependencies["banner"]
 }

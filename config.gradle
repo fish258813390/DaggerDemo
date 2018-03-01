@@ -49,6 +49,15 @@ ext {
             "rxjava"              : "io.reactivex.rxjava2:rxjava:2.0.6",
             "rxandroid"           : "io.reactivex.rxjava2:rxandroid:2.0.1",
             "rxbinding2"          : "com.jakewharton.rxbinding2:rxbinding:2.0.0",
+
+            // rxjava lifecycle绑定
+            "rxlifecycle2"        : "com.trello.rxlifecycle2:rxlifecycle:2.1.0",
+            "rxlifecomponents"    : "com.trello.rxlifecycle2:rxlifecycle-components:2.1.0",
+
+            // util
+            "utilcode"            : "com.blankj:utilcode:1.9.6",
+            "glide"               : "com.github.bumptech.glide:glide:4.0.0-RC1",
+            "banner"              : "com.youth.banner:banner:1.4.9",
     ]
 
 }

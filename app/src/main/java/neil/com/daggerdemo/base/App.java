@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.Utils;
 
 import neil.com.daggerdemo.BuildConfig;
 import neil.com.daggerdemo.di.component.ApplicationComponent;
@@ -22,6 +23,7 @@ public class App extends Application {
         super.onCreate();
         mInstance = this;
         initApplicationComponent();
+        Utils.init(this);
         intARouter();
     }
 
@@ -46,7 +48,7 @@ public class App extends Application {
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
     }
 
-    public ApplicationComponent getmApplicationComponent() {
+    public ApplicationComponent getApplicationComponent() {
         return mApplicationComponent;
     }
 
