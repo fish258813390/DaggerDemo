@@ -59,13 +59,11 @@ dependencies {
     // rxlife 生命周期绑定
     compile rootProject.ext.dependencies["rxlifecycle2"]
     compile rootProject.ext.dependencies["rxlifecomponents"]
-
     // retrofit
     compile rootProject.ext.dependencies["retrofit2"]
     compile rootProject.ext.dependencies["converter-scalars"]
     compile rootProject.ext.dependencies["converter-gson"]
     compile rootProject.ext.dependencies["adapter-rxjava2"]
-
     // utils
     compile rootProject.ext.dependencies["utilcode"]
     compile rootProject.ext.dependencies["glide"]

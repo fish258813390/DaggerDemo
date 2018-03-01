@@ -28,6 +28,7 @@ import neil.com.daggerdemo.di.module.ActivityModule;
  * 1.依附Presenter
  * 依附时需要实现契约类中的回调View
  *
+ * @Inject 带有此注解的属性或构造方法将参与依赖注入中,Dagger2会实例化有此注解的类
  * @author neil
  * @date 2018/3/1
  */
