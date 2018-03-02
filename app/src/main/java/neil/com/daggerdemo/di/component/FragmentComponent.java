@@ -7,6 +7,7 @@ import dagger.Component;
 import neil.com.daggerdemo.di.module.FragmentModule;
 import neil.com.daggerdemo.di.scope.ContextLife;
 import neil.com.daggerdemo.di.scope.PerFragment;
+import neil.com.daggerdemo.ui.home.HomeFragment;
 
 /**
  * @author neil
@@ -24,4 +25,5 @@ public interface FragmentComponent {
 
     Activity getActivity();
 
+    void inject(HomeFragment fragment);
 }

@@ -64,6 +64,9 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
         }
     }
 
+    /**
+     * 初始化Component,完成 子Activity 依赖实例的注入
+     */
     private void initActivityComponent() {
         mActivityComponent = DaggerActivityComponent.builder().applicationComponent(((App)getApplication()).getApplicationComponent())
                 .activityModule(new ActivityModule(this)).build();

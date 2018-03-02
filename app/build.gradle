@@ -68,4 +68,9 @@ dependencies {
     compile rootProject.ext.dependencies["utilcode"]
     compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["banner"]
+    compile rootProject.ext.dependencies["circleimageview"]
+    compile rootProject.ext.dependencies["BaseAdapterHelper"]
+}
+repositories {
+    mavenCentral()
 }

@@ -34,7 +34,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build("/my/LoginActivity").navigation();
+//                ARouter.getInstance().build("/my/LoginActivity").navigation();
+                ARouter.getInstance().build("/main/HomeActivity")
+                        .withString("title","home")
+                        .withString("type","1")
+                        .navigation();
             }
         });
 

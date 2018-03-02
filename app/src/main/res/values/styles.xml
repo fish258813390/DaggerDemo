@@ -54,14 +54,14 @@
         <!--<item name="android:layout_marginBottom">10dp</item>-->
     <!--</style>-->
 
-    <!--<style name="tv_operating_style">-->
-        <!--<item name="android:gravity">center_vertical</item>-->
-        <!--<item name="android:layout_width">match_parent</item>-->
-        <!--<item name="android:layout_height">wrap_content</item>-->
-        <!--<item name="android:background">@null</item>-->
-        <!--<item name="android:drawableRight">@drawable/ic_right</item>-->
-        <!--<item name="android:padding">@dimen/dp_10</item>-->
-    <!--</style>-->
+    <style name="tv_operating_style">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:drawableRight">@drawable/ic_right</item>
+        <item name="android:padding">@dimen/dp_10</item>
+    </style>
 
     <style name="line_view">
         <item name="android:layout_height">2px</item>

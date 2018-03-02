@@ -3,6 +3,8 @@ package neil.com.daggerdemo.net;
 import java.util.List;
 
 import io.reactivex.Observable;
+import neil.com.daggerdemo.bean.Article;
+import neil.com.daggerdemo.bean.Banner;
 import neil.com.daggerdemo.bean.DataResponse;
 import neil.com.daggerdemo.bean.User;
 import retrofit2.http.Field;
@@ -17,22 +19,22 @@ import retrofit2.http.Query;
  */
 
 public interface ApiService {
-//    /**
-//     * 首页数据
-//     * http://www.wanandroid.com/article/list/0/json
-//     *
-//     * @param page page
-//     */
-//    @GET("/article/list/{page}/json")
-//    Observable<DataResponse<Article>> getHomeArticles(@Path("page") int page);
+    /**
+     * 首页数据
+     * http://www.wanandroid.com/article/list/0/json
+     *
+     * @param page page
+     */
+    @GET("/article/list/{page}/json")
+    Observable<DataResponse<Article>> getHomeArticles(@Path("page") int page);
 
-//    /**
-//     * 首页Banner
-//     *
-//     * @return BannerResponse
-//     */
-//    @GET("/banner/json")
-//    Observable<DataResponse<List<Banner>>> getHomeBanners();
+    /**
+     * 首页Banner
+     *
+     * @return BannerResponse
+     */
+    @GET("/banner/json")
+    Observable<DataResponse<List<Banner>>> getHomeBanners();
 
 //    /**
 //     * 知识体系
