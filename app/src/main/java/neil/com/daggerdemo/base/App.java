@@ -6,6 +6,8 @@ import android.content.Context;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.Utils;
 
+import org.litepal.LitePal;
+
 import neil.com.daggerdemo.BuildConfig;
 import neil.com.daggerdemo.di.component.ApplicationComponent;
 import neil.com.daggerdemo.di.component.DaggerApplicationComponent;
@@ -25,6 +27,9 @@ public class App extends Application {
         initApplicationComponent();
         Utils.init(this);
         intARouter();
+        // 初始化db
+        LitePal.initialize(this);
+
     }
 
     /**

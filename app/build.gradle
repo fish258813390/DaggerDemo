@@ -70,6 +70,16 @@ dependencies {
     compile rootProject.ext.dependencies["banner"]
     compile rootProject.ext.dependencies["circleimageview"]
     compile rootProject.ext.dependencies["BaseAdapterHelper"]
+
+    // 新闻 tablayout
+    compile rootProject.ext.dependencies["tablayout"]
+    compile rootProject.ext.dependencies["FlycoDialog"]
+    // 下拉刷新
+    compile rootProject.ext.dependencies["ultra-ptr"]
+    compile rootProject.ext.dependencies["lottie"]
+
+    // 数据db
+    compile rootProject.ext.dependencies["litepal"]
 }
 repositories {
     mavenCentral()
