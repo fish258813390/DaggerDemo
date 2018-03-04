@@ -6,6 +6,7 @@ import io.reactivex.Observable;
 import neil.com.daggerdemo.bean.Article;
 import neil.com.daggerdemo.bean.Banner;
 import neil.com.daggerdemo.bean.DataResponse;
+import neil.com.daggerdemo.bean.NewsDetail;
 import neil.com.daggerdemo.bean.User;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -169,4 +170,11 @@ public interface ApiService {
 //    @POST("/lg/collect/usertools/json")
 //    @FormUrlEncoded
 //    Observable<DataResponse> delBookmark(@Field("id") int id);
+
+    @GET("ClientNews")
+    Observable<List<NewsDetail>> getNewsDetail(@Query("id") String id,
+                                               @Query("action") String action,
+                                               @Query("pullNum") int pullNum
+    );
+
 }

@@ -71,6 +71,9 @@ ext {
             // db
             "litepal"               : "org.litepal.android:core:1.5.1",
 
+            // fragment
+            "fragmentation"         : "me.yokeyword:fragmentation:1.0.0",
+
     ]
 
 }

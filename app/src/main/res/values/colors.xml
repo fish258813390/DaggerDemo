@@ -20,4 +20,7 @@
     <color name="lightgray">#11000000</color>
 
     <color name="white">#ffffff</color>
+
+    <color name="tab_unselect">#a3a3a3</color>
+    <color name="news_tv_source_color">#a3a3a3</color>
 </resources>

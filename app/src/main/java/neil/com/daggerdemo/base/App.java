@@ -1,12 +1,12 @@
 package neil.com.daggerdemo.base;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.Utils;
 
 import org.litepal.LitePal;
+import org.litepal.LitePalApplication;
 
 import neil.com.daggerdemo.BuildConfig;
 import neil.com.daggerdemo.di.component.ApplicationComponent;
@@ -16,7 +16,7 @@ import neil.com.daggerdemo.di.module.ApplicationModule;
 /**
  * Created by neil on 2018/2/28 0028.
  */
-public class App extends Application {
+public class App extends LitePalApplication {
     private ApplicationComponent mApplicationComponent;
     private static App mInstance;
 

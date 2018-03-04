@@ -23,6 +23,7 @@ import neil.com.daggerdemo.ui.home.HomeFragment;
 import neil.com.daggerdemo.ui.hotsearch.HotFragment;
 import neil.com.daggerdemo.ui.knowledgesystem.KnowledgeSystemFragment;
 import neil.com.daggerdemo.ui.my.MyFragment;
+import neil.com.daggerdemo.ui.news.NewsFragment;
 
 /**
  * MainActivity
@@ -91,7 +92,8 @@ public class HomeActivity extends BaseActivity implements BottomNavigationView.O
         mFragments.add(HomeFragment.newInstance());
         mFragments.add(KnowledgeSystemFragment.newInstance());
         mFragments.add(MyFragment.newInstance());
-        mFragments.add(HotFragment.newInstance());
+//        mFragments.add(HotFragment.newInstance());
+        mFragments.add(NewsFragment.newInstance());
     }
 
     /**

@@ -70,6 +70,8 @@ dependencies {
     compile rootProject.ext.dependencies["banner"]
     compile rootProject.ext.dependencies["circleimageview"]
     compile rootProject.ext.dependencies["BaseAdapterHelper"]
+    // fragment
+    compile rootProject.ext.dependencies["fragmentation"]
 
     // 新闻 tablayout
     compile rootProject.ext.dependencies["tablayout"]

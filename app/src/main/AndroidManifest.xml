@@ -11,8 +11,9 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <!-- 改变wifi状态 -->
     <uses-permission android:name="android.permission.READ_LOGS"/>
+    <!-- 读取sd卡 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
     <application
         android:name=".base.App"

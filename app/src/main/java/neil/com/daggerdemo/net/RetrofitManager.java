@@ -88,6 +88,22 @@ public class RetrofitManager {
     }
 
     /**
+     * 获取Service
+     *
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> T create(Class<T> clazz, String url) {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(url)
+                .client(getOkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
+        return retrofit.create(clazz);
+    }
+
+
+    /**
      * 云端响应头拦截器，用来配置缓存策略
      * Dangerous interceptor that rewrites the server's cache-control header.
      */
@@ -124,6 +140,7 @@ public class RetrofitManager {
 
         String TAG = "LoggerInterceptor";
         private String content;
+
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();

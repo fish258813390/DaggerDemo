@@ -43,7 +43,7 @@ import neil.com.daggerdemo.widget.SimpleMultiStateView;
  * @date 2018/3/2
  */
 
-public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends RxFragment implements BaseContract.BaseView {
+public abstract class LazyBaseFragment<T extends BaseContract.BasePresenter> extends SupportFragment implements BaseContract.BaseView {
 
     @Nullable
     @Inject
@@ -64,6 +64,8 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     protected abstract int getLayoutId();
 
     protected abstract void initView(View view);
+
+    protected abstract void initData();
 
     @android.support.annotation.Nullable
     @Override
@@ -93,6 +95,17 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
             showNoNet();
         }
         initStateView();
+    }
+
+    @Override
+    public void onLazyInitView(@android.support.annotation.Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        initData();
+    }
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
     }
 
     /**
@@ -139,6 +152,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
 
     @Override
     public void showSuccess(String successMsg) {
+        ToastUtils.showShort(successMsg);
         hideLoadingDialog();
         if (mSimpleMultiStateView != null) {
             mSimpleMultiStateView.showContent();
@@ -147,6 +161,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
 
     @Override
     public void showFaild(String errorMsg) {
+        ToastUtils.showShort(errorMsg);
         if (mSimpleMultiStateView != null) {
             mSimpleMultiStateView.showErrorView();
         }
@@ -154,6 +169,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
 
     @Override
     public void showNoNet() {
+        ToastUtils.showShort(R.string.no_network_connection);
         if (mSimpleMultiStateView != null) {
             mSimpleMultiStateView.showNoNetView();
         }

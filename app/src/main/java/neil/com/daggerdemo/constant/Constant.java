@@ -7,6 +7,17 @@ package neil.com.daggerdemo.constant;
 public class Constant {
     public static final String REQUEST_BASE_URL = "http://wanandroid.com/";
 
+    // 文章
+    public static final String sIFengApi = "http://api.iclient.ifeng.com/";
+
+    public static final String sJanDanApi = "http://i.jandan.net/";
+
+    public static final String sGetNewsImagesApi = "NewRelativeVideoList";
+
+    public static final String sGetNewsArticleCmppApi = "http://api.3g.ifeng.com/";
+
+    public static final String sGetNewsArticleDocCmppApi = "ipadtestdoc";
+
     /**
      * 每页数量
      */
