@@ -74,6 +74,11 @@ ext {
             // fragment
             "fragmentation"         : "me.yokeyword:fragmentation:1.0.0",
 
+            // 欢迎页
+            "gif-drawable"          : "pl.droidsonroids.gif:android-gif-drawable:1.2.8",
+            // 滑动退出activity
+            "swipebacklayout"       : "cn.bingoogolapple:bga-swipebacklayout:1.1.0@aar",
+
     ]
 
 }

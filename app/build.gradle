@@ -79,6 +79,10 @@ dependencies {
     // 下拉刷新
     compile rootProject.ext.dependencies["ultra-ptr"]
     compile rootProject.ext.dependencies["lottie"]
+    // 欢迎页
+    compile rootProject.ext.dependencies["gif-drawable"]
+    // 滑动退出activity
+    compile rootProject.ext.dependencies["swipebacklayout"]
 
     // 数据db
     compile rootProject.ext.dependencies["litepal"]

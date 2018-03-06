@@ -1,12 +1,16 @@
 package neil.com.daggerdemo;
 
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -19,6 +23,8 @@ import java.util.List;
 import butterknife.BindView;
 import neil.com.daggerdemo.base.BaseActivity;
 import neil.com.daggerdemo.base.BaseFragment;
+import neil.com.daggerdemo.base.LazyBaseActivity;
+import neil.com.daggerdemo.base.LazyBaseFragment;
 import neil.com.daggerdemo.ui.home.HomeFragment;
 import neil.com.daggerdemo.ui.hotsearch.HotFragment;
 import neil.com.daggerdemo.ui.knowledgesystem.KnowledgeSystemFragment;
@@ -32,7 +38,7 @@ import neil.com.daggerdemo.ui.news.NewsFragment;
  * @date 2018/3/2
  */
 @Route(path = "/main/HomeActivity")
-public class HomeActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends LazyBaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     @Autowired
     public String title;
     @Autowired
@@ -55,7 +61,22 @@ public class HomeActivity extends BaseActivity implements BottomNavigationView.O
     }
 
     @Override
-    protected void initView() {
+    protected void initToolBar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (mToolbar == null) {
+            throw new NullPointerException("toolbar can not be null");
+        }
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeAsUp());
+        /**toolbar除掉阴影*/
+        getSupportActionBar().setElevation(0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mToolbar.setElevation(0);
+        }
+    }
+
+    @Override
+    protected void initView(View view, Bundle savedInstanceState) {
         mNavigation.setOnNavigationItemSelectedListener(this);
         initFragment();
         switchFragment(0);
@@ -145,5 +166,10 @@ public class HomeActivity extends BaseActivity implements BottomNavigationView.O
 //            return true;
 //        }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean isSupportSwipeBack() {
+        return false;
     }
 }

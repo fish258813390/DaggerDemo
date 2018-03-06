@@ -29,6 +29,7 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import neil.com.daggerdemo.R;
 import neil.com.daggerdemo.base.BaseFragment;
+import neil.com.daggerdemo.base.LazyBaseFragment;
 import neil.com.daggerdemo.bean.NewsDetail;
 import neil.com.daggerdemo.ui.adapter.NewsDetailAdapter;
 import neil.com.daggerdemo.ui.news.contract.DetailContract;
@@ -43,7 +44,7 @@ import neil.com.daggerdemo.widget.CustomLoadMoreView;
  * @date 2018/3/2
  */
 
-public class DetailFragment extends BaseFragment<DetailPresenter> implements DetailContract.View {
+public class DetailFragment extends LazyBaseFragment<DetailPresenter> implements DetailContract.View {
     private static final String TAG = "JdDetailFragment";
 
     @BindView(R.id.mRecyclerView)
@@ -87,12 +88,6 @@ public class DetailFragment extends BaseFragment<DetailPresenter> implements Det
 
     @Override
     protected void initView(View view) {
-        if (getArguments() == null) {
-            return;
-        }
-        newsid = getArguments().getString("newsid");
-        position = getArguments().getInt("position");
-
         //
         mPtrFrameLayout.disableWhenHorizontalMove(true);
         mPtrFrameLayout.setPtrHandler(new PtrHandler() {
@@ -146,7 +141,13 @@ public class DetailFragment extends BaseFragment<DetailPresenter> implements Det
                 ToastUtils.showShort("banner--->" + position);
             }
         });
+    }
 
+    @Override
+    protected void initData() {
+        if (getArguments() == null) return;
+        newsid = getArguments().getString("newsid");
+        position = getArguments().getInt("position");
         mPresenter.getData(newsid, "default", 1);
     }
 

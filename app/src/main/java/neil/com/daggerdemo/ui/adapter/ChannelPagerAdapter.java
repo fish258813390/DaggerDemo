@@ -7,8 +7,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.List;
 
 import neil.com.daggerdemo.base.BaseFragment;
+import neil.com.daggerdemo.base.LazyBaseFragment;
 import neil.com.daggerdemo.bean.Channel;
 import neil.com.daggerdemo.ui.news.DetailFragment;
+import neil.com.daggerdemo.ui.news.presenter.DetailPresenter;
 
 /**
  * Created by neil on 2018/3/2 0002.
@@ -29,7 +31,7 @@ public class ChannelPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public BaseFragment getItem(int position) {
+    public LazyBaseFragment getItem(int position) {
         return DetailFragment.newInstance(mChannels.get(position).getChannelId(), position);
     }
 
