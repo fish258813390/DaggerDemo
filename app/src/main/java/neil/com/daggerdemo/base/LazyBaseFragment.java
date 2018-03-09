@@ -42,7 +42,6 @@ import neil.com.daggerdemo.widget.SimpleMultiStateView;
  * @author neil
  * @date 2018/3/2
  */
-
 public abstract class LazyBaseFragment<T extends BaseContract.BasePresenter> extends SupportFragment implements BaseContract.BaseView {
 
     @Nullable
@@ -91,7 +90,7 @@ public abstract class LazyBaseFragment<T extends BaseContract.BasePresenter> ext
         initInjector();
         attachView();
         initView(mRootView);
-        if (NetworkUtils.isConnected()) {
+        if (!NetworkUtils.isConnected()) {
             showNoNet();
         }
         initStateView();
@@ -152,7 +151,7 @@ public abstract class LazyBaseFragment<T extends BaseContract.BasePresenter> ext
 
     @Override
     public void showSuccess(String successMsg) {
-        ToastUtils.showShort(successMsg);
+//        ToastUtils.showShort(successMsg);
         hideLoadingDialog();
         if (mSimpleMultiStateView != null) {
             mSimpleMultiStateView.showContent();
@@ -161,7 +160,7 @@ public abstract class LazyBaseFragment<T extends BaseContract.BasePresenter> ext
 
     @Override
     public void showFaild(String errorMsg) {
-        ToastUtils.showShort(errorMsg);
+//        ToastUtils.showShort(errorMsg);
         if (mSimpleMultiStateView != null) {
             mSimpleMultiStateView.showErrorView();
         }
@@ -177,7 +176,7 @@ public abstract class LazyBaseFragment<T extends BaseContract.BasePresenter> ext
 
     @Override
     public void onRetry() {
-        ToastUtils.showShort("onRetry");
+
     }
 
     @Override

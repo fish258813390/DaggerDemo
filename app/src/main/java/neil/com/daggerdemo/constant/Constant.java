@@ -9,6 +9,7 @@ public class Constant {
 
     // 文章
     public static final String sIFengApi = "http://api.iclient.ifeng.com/";
+    public static final String uid = "864678036850608";
 
     public static final String sJanDanApi = "http://i.jandan.net/";
 

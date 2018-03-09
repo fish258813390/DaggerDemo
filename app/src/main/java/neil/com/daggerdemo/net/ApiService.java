@@ -8,6 +8,8 @@ import neil.com.daggerdemo.bean.Banner;
 import neil.com.daggerdemo.bean.DataResponse;
 import neil.com.daggerdemo.bean.NewsDetail;
 import neil.com.daggerdemo.bean.User;
+import neil.com.daggerdemo.bean.VideoChannelBean;
+import neil.com.daggerdemo.bean.VideoDetailBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -171,10 +173,36 @@ public interface ApiService {
 //    @FormUrlEncoded
 //    Observable<DataResponse> delBookmark(@Field("id") int id);
 
+    /**
+     * 获取新闻资讯列表
+     * @param id
+     * @param action
+     * @param pullNum
+     * @return
+     */
     @GET("ClientNews")
     Observable<List<NewsDetail>> getNewsDetail(@Query("id") String id,
                                                @Query("action") String action,
                                                @Query("pullNum") int pullNum
     );
 
+    /**
+     * 获取视频频道
+     * @param page
+     * @return
+     */
+    @GET("ifengvideoList")
+    Observable<List<VideoChannelBean>> getVideoChannel(@Query("page") int page);
+
+    /**
+     * 获取视频详情列表
+     * @param page
+     * @param listtype
+     * @param typeid
+     * @return
+     */
+    @GET("ifengvideoList")
+    Observable<List<VideoDetailBean>> getVideoDetail(@Query("page") int page,
+                                                     @Query("listtype") String listtype,
+                                                     @Query("typeid") String typeid);
 }

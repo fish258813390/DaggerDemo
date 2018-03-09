@@ -30,6 +30,7 @@ import neil.com.daggerdemo.ui.hotsearch.HotFragment;
 import neil.com.daggerdemo.ui.knowledgesystem.KnowledgeSystemFragment;
 import neil.com.daggerdemo.ui.my.MyFragment;
 import neil.com.daggerdemo.ui.news.NewsFragment;
+import neil.com.daggerdemo.ui.video.VideoFragment;
 
 /**
  * MainActivity
@@ -115,6 +116,7 @@ public class HomeActivity extends LazyBaseActivity implements BottomNavigationVi
         mFragments.add(MyFragment.newInstance());
 //        mFragments.add(HotFragment.newInstance());
         mFragments.add(NewsFragment.newInstance());
+        mFragments.add(VideoFragment.newInstance());
     }
 
     /**
@@ -149,7 +151,7 @@ public class HomeActivity extends LazyBaseActivity implements BottomNavigationVi
         if (item.getItemId() == R.id.menuHot) {
             switchFragment(3);
         } else if (item.getItemId() == R.id.menuSearch) {
-            ToastUtils.showShort("查找");
+            switchFragment(4);
         }
         return super.onOptionsItemSelected(item);
     }

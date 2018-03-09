@@ -93,7 +93,6 @@ public class WelcomeActivity extends LazyBaseActivity {
                 tvSkip.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtils.showShort("点击+++");
                         onComplete();
                     }
                 });

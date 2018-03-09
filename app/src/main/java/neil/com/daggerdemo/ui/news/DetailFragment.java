@@ -1,20 +1,24 @@
 package neil.com.daggerdemo.ui.news;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.ViewAnimator;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.github.florent37.viewanimator.AnimationListener;
+import com.github.florent37.viewanimator.ViewAnimator;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -118,7 +122,14 @@ public class DetailFragment extends LazyBaseFragment<DetailPresenter> implements
 
             }
         }, mRecyclerView);
-        // item点击事件
+        // recyclerView item点击事件
+        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+                NewsDetail.ItemBean itemBean = (NewsDetail.ItemBean) baseQuickAdapter.getItem(position);
+
+            }
+        });
 
         view_Focus = view.inflate(getActivity(), R.layout.news_detail_headerview, null);
         mBanner = (Banner) view_Focus.findViewById(R.id.banner);
@@ -135,7 +146,7 @@ public class DetailFragment extends LazyBaseFragment<DetailPresenter> implements
         mBanner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                if(mBannerList.size() < 1){
+                if (mBannerList.size() < 1) {
                     return;
                 }
                 ToastUtils.showShort("banner--->" + position);
@@ -196,9 +207,26 @@ public class DetailFragment extends LazyBaseFragment<DetailPresenter> implements
         }
     }
 
+    /**
+     * 加载更多
+     *
+     * @param itemBeanList
+     */
     @Override
     public void loadMoreData(List<NewsDetail.ItemBean> itemBeanList) {
+        if (itemBeanList == null || itemBeanList.size() == 0) {
+            detailAdapter.loadMoreFail();
+        } else {
+            upPullNum++;
+            detailAdapter.addData(itemBeanList);
+            detailAdapter.loadMoreComplete();
+            Log.i(TAG, "loadMoreData: " + itemBeanList.toString());
+        }
+    }
 
+    @Override
+    public void onRetry() {
+        initData();
     }
 
     private void showToast(int num, boolean isRefresh) {
@@ -208,18 +236,29 @@ public class DetailFragment extends LazyBaseFragment<DetailPresenter> implements
             mTvToast.setText("将为你减少此类内容");
         }
         mRlTopToast.setVisibility(View.VISIBLE);
-//        ViewAnimator.animate(mRlTopToast)
-//                .newsPaper()
-//                .duration(1000)
-//                .start()
-//                .onStop(new Animation.AnimationListener.Stop() {
-//                    @Override
-//                    public void onStop() {
-//                        ViewAnimator.animate(mRlTopToast)
-//                                .bounceOut()
-//                                .duration(1000)
-//                                .start();
-//                    }
-//                });
+        ViewAnimator.animate(mRlTopToast)
+                .newsPaper()
+                .duration(2000)
+                .start()
+                .onStop(new AnimationListener.Stop() {
+                    @Override
+                    public void onStop() {
+                        ViewAnimator.animate(mRlTopToast)
+                                .bounceOut()
+                                .duration(1000)
+                                .start();
+                    }
+                });
+    }
+
+    private void toRead(NewsDetail.ItemBean itemBean) {
+        if (itemBean == null) {
+            return;
+        }
+        switch (itemBean.getItemType()) {
+            case NewsDetail.ItemBean.TYPE_DOC_TITLEIMG: //单图或多图资讯
+            case NewsDetail.ItemBean.TYPE_DOC_SLIDEIMG:
+
+        }
     }
 }

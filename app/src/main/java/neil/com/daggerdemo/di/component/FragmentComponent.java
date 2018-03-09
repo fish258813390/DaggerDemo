@@ -10,6 +10,8 @@ import neil.com.daggerdemo.di.scope.PerFragment;
 import neil.com.daggerdemo.ui.home.HomeFragment;
 import neil.com.daggerdemo.ui.news.DetailFragment;
 import neil.com.daggerdemo.ui.news.NewsFragment;
+import neil.com.daggerdemo.ui.video.VideoDetailFragment;
+import neil.com.daggerdemo.ui.video.VideoFragment;
 
 /**
  * @author neil
@@ -32,4 +34,9 @@ public interface FragmentComponent {
     void inject(NewsFragment fragment);
 
     void inject(DetailFragment fragment);
+
+    void inject(VideoFragment fragment);
+
+    void inject(VideoDetailFragment fragment);
+
 }

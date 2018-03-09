@@ -89,7 +89,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
         initInjector();
         attachView();
         initView(mRootView);
-        if (NetworkUtils.isConnected()) {
+        if (!NetworkUtils.isConnected()) {
             showNoNet();
         }
         initStateView();

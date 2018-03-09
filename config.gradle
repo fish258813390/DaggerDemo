@@ -78,6 +78,10 @@ ext {
             "gif-drawable"          : "pl.droidsonroids.gif:android-gif-drawable:1.2.8",
             // 滑动退出activity
             "swipebacklayout"       : "cn.bingoogolapple:bga-swipebacklayout:1.1.0@aar",
+            // 新闻推荐动画
+            "viewanimator"          : "com.github.florent37:viewanimator:1.0.5",
+            // 视频播放
+            "videoplayer"           : "fm.jiecao:jiecaovideoplayer:5.7",
 
     ]
 

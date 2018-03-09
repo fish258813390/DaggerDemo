@@ -18,6 +18,7 @@ import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.FormBody;
 import okhttp3.Headers;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -50,7 +51,7 @@ public class RetrofitManager {
 
     /**
      * 获取OkHttpClient实例
-     *
+     * 待优化
      * @return
      */
     private static OkHttpClient getOkHttpClient() {
@@ -64,6 +65,7 @@ public class RetrofitManager {
                             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                             .addInterceptor(mRewriteCacheControlInterceptor)
                             .addInterceptor(mLoggingInterceptor)
+                            .addInterceptor(sQueryParameterInterceptor)
 //                            .cookieJar(new CookiesManager())
                             .build();
                 }
@@ -144,12 +146,12 @@ public class RetrofitManager {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-            LogUtils.e(TAG, "request:" + request.url());
+            LogUtils.json(TAG, "request:" + request.url());
             Headers headers = request.headers();
             for (int i = 0; i < headers.size(); i++) {
                 String headerName = headers.name(i);
                 String headerValue = headers.get(headerName);
-                LogUtils.e(TAG, "Header----------->Name:" + headerName + "------------>Value:" + headerValue + "\n");
+//                LogUtils.json(TAG, "Header----------->Name:" + headerName + "------------>Value:" + headerValue + "\n");
             }
             RequestBody requestBody = request.body();
             if (requestBody instanceof FormBody) {
@@ -157,7 +159,7 @@ public class RetrofitManager {
                 for (int i = 0; i < ((FormBody) requestBody).size(); i++) {
                     rootMap.put(((FormBody) requestBody).encodedName(i), getValueDecode(((FormBody) requestBody).encodedValue(i)));
                 }
-                LogUtils.e(TAG, "params : " + new Gson().toJson(rootMap));
+                LogUtils.json(TAG, "params : " + new Gson().toJson(rootMap));
             }
             long t1 = System.nanoTime();
             okhttp3.Response response = chain.proceed(chain.request());
@@ -166,15 +168,15 @@ public class RetrofitManager {
             if (null != originalBody) {
                 content = originalBody.string();
             }
-            LogUtils.e(TAG, "response body:" + content);
+            LogUtils.json(TAG, "response body:" + content);
             try {
 
             } catch (Exception e) {
-                LogUtils.e("Exception", e.getMessage());
+                LogUtils.json("Exception", e.getMessage());
                 e.printStackTrace();
             }
             long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - t1);
-            LogUtils.e(TAG, "time : " + " (" + tookMs + "ms" + ')');
+//            LogUtils.json(TAG, "time : " + " (" + tookMs + "ms" + ')');
 //            return response;
             return response.newBuilder().body(ResponseBody.create(mediaType, content)).build();
         }
@@ -193,6 +195,67 @@ public class RetrofitManager {
             e.printStackTrace();
         }
         return value;
+    }
+
+    /**
+     * 添加查询参数: 公共参数
+     * 方式一
+     */
+    public static final Interceptor sQueryParameterInterceptor = new Interceptor() {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request originalRequest = chain.request();
+            Request request;
+            HttpUrl modifiedUrl = originalRequest.url().newBuilder()
+                    .addQueryParameter("uid", Constant.uid)
+                    .addQueryParameter("devid", Constant.uid)
+                    .addQueryParameter("proid", "ifengnews")
+                    .addQueryParameter("vt", "5")
+                    .addQueryParameter("publishid", "6103")
+                    .addQueryParameter("screen", "1080x1920")
+                    .addQueryParameter("df", "androidphone")
+                    .addQueryParameter("os", "android_22")
+                    .addQueryParameter("nw", "wifi")
+                    .build();
+            request = originalRequest.newBuilder().url(modifiedUrl).build();
+            return chain.proceed(request);
+        }
+    };
+
+    /**
+     * 添加公共头信息
+     * 可放入公共请求头中
+     */
+    private class AddHeaderInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request().newBuilder()
+                    .header("register_platform", "")
+                    .build();
+            return chain.proceed(request);
+        }
+    }
+
+    /**
+     * 请求体定制：统一添加定制参数
+     */
+    private class AddBodyInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request original = chain.request();
+            Request.Builder requestBuilder = original.newBuilder();
+            if (original.body() instanceof FormBody) {
+                FormBody.Builder newFormBody = new FormBody.Builder();
+                FormBody oidFormBody = (FormBody) original.body();
+                for (int i = 0; i < oidFormBody.size(); i++) {
+                    newFormBody.addEncoded(oidFormBody.encodedName(i), oidFormBody.encodedValue(i));
+                }
+                newFormBody.add("register_platform", "");
+                requestBuilder.method(original.method(), newFormBody.build());
+            }
+            Request request = requestBuilder.build();
+            return chain.proceed(request);
+        }
     }
 
 }

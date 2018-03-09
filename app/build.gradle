@@ -83,6 +83,10 @@ dependencies {
     compile rootProject.ext.dependencies["gif-drawable"]
     // 滑动退出activity
     compile rootProject.ext.dependencies["swipebacklayout"]
+    // 刷新条目顶部 动画提示
+    compile rootProject.ext.dependencies["viewanimator"]
+    // 视频播放
+    compile rootProject.ext.dependencies["videoplayer"]
 
     // 数据db
     compile rootProject.ext.dependencies["litepal"]
